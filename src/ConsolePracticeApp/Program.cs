@@ -9,6 +9,10 @@ namespace ConsolePracticeApp
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Hello World");
+            var serv = new GitService("nicholascm90");
+            serv.getRepositories();
+            Console.ReadLine(); 
         }
     }
 }
