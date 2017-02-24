@@ -8,8 +8,8 @@
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"
-    }
-  },
+    },
+    "RestSharp.NetCore": "105.2.3"  },
 
   "frameworks": {
     "netcoreapp1.0": {
