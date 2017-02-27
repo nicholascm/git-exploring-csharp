@@ -1,18 +1,19 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
+
 
 namespace ConsolePracticeApp
 {
     public class GitService
     {
-        private const string url = "https://api.github.com/search/repositories?q=";  
+        private const string url = "https://api.github.com/";  
 
         public string username; 
 
-        public GitService(string username, string url)
+        public GitService(string username)
         {
             this.username = username; 
         }
@@ -20,10 +21,25 @@ namespace ConsolePracticeApp
         public void getRepositories()
         {
             Console.WriteLine("repositories gotten");
-            WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponseAsync();
+            var client = new RestClient(url); 
+
+            var request = new RestRequest("users/{username}/repos", Method.GET);
+            Console.WriteLine("Who's repositories would you like to see?");
+            string username = Console.ReadLine();
+            request.AddParameter("username", username); 
+            request.AddHeader("user-agent", "nicholascm90");
+            client.ExecuteAsync<List<Repository>>(request, response => {
+                Console.WriteLine(response.Content);
+                Console.WriteLine(response.Content.Count());
+                Console.WriteLine(response.Data.ElementAt(0).id);
+                Console.WriteLine(response.Data.ElementAt(0).name);
+                Console.WriteLine(response.Data.ElementAt(0).stargazers_count);
+         
+            });
 
         }
+
+
     }
 }
 
