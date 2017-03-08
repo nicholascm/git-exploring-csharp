@@ -26,17 +26,14 @@ namespace ConsolePracticeApp
             var request = new RestRequest("users/{username}/repos", Method.GET);
             Console.WriteLine("Who's repositories would you like to see?");
             string username = Console.ReadLine();
-            request.AddParameter("username", username); 
+            request.AddUrlSegment("username", username); 
             request.AddHeader("user-agent", "nicholascm90");
             client.ExecuteAsync<List<Repository>>(request, response => {
                 Console.WriteLine(response.Content);
                 Console.WriteLine(response.Content.Count());
-                Console.WriteLine(response.Data.ElementAt(0).id);
-                Console.WriteLine(response.Data.ElementAt(0).name);
-                Console.WriteLine(response.Data.ElementAt(0).stargazers_count);
-         
-            });
+                var first = response.Data[0];
 
+            });
         }
 
 
