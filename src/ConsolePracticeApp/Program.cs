@@ -28,7 +28,7 @@ namespace ConsolePracticeApp
             Console.WriteLine();
             Console.WriteLine("Remove at position 3");
 
-            list.RemoveAtPostion(3);
+            list.addAtPosition(3, "position3");
             list.PrintAllNodes();
             Console.ReadLine(); 
         }

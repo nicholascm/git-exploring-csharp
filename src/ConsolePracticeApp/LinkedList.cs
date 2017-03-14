@@ -84,5 +84,30 @@ namespace ConsolePracticeApp
                 curr = curr.next;
             }
         }
+
+        public Node addAtPosition(int position, object data)
+        {
+            Node curr = head;
+            int count = 0;
+            Node newNode = new Node();
+            newNode.value = data;
+            if (head == null)
+            {
+                return newNode; 
+            }
+            else
+            {
+                while(curr.next != null)
+                {
+                    if (position == count)
+                    {
+                        newNode.next = curr.next;
+                        curr.next = newNode; 
+                    }
+
+                }
+                return head;
+            }
+        }
     }
 }
